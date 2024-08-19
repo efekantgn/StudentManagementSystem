@@ -62,11 +62,24 @@
             // 
             // gridControl
             // 
-            this.gridControl.Location = new System.Drawing.Point(12, 164);
+            this.gridControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControl.EmbeddedNavigator.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridControl.EmbeddedNavigator.Appearance.BackColor = System.Drawing.Color.Silver;
+            this.gridControl.EmbeddedNavigator.Appearance.BorderColor = System.Drawing.Color.Gray;
+            this.gridControl.EmbeddedNavigator.Appearance.Options.UseBackColor = true;
+            this.gridControl.EmbeddedNavigator.Appearance.Options.UseBorderColor = true;
+            this.gridControl.EmbeddedNavigator.AutoSize = true;
+            this.gridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(0);
+            this.gridControl.Location = new System.Drawing.Point(0, 141);
+            this.gridControl.LookAndFeel.SkinName = "VS2010";
+            this.gridControl.LookAndFeel.UseDefaultLookAndFeel = false;
             this.gridControl.MainView = this.gridView1;
+            this.gridControl.Margin = new System.Windows.Forms.Padding(0);
             this.gridControl.MenuManager = this.ribbonControl;
             this.gridControl.Name = "gridControl";
-            this.gridControl.Size = new System.Drawing.Size(766, 405);
+            this.gridControl.Size = new System.Drawing.Size(790, 458);
             this.gridControl.TabIndex = 2;
             this.gridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -78,6 +91,7 @@
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsBehavior.ReadOnly = true;
+            this.gridView1.OptionsView.ShowFooter = true;
             // 
             // ribbonControl
             // 
@@ -109,6 +123,7 @@
             this.ribbonControl.Size = new System.Drawing.Size(790, 141);
             this.ribbonControl.StatusBar = this.ribbonStatusBar;
             this.ribbonControl.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
+            this.ribbonControl.SelectedPageChanged += new System.EventHandler(this.RobbonSelectedPageChanged);
             // 
             // bbiPrintPreview
             // 
@@ -221,7 +236,6 @@
             this.ribbonPageGroup4.ItemLinks.Add(this.barBtnDelete);
             this.ribbonPageGroup4.ItemsLayout = DevExpress.XtraBars.Ribbon.RibbonPageGroupItemsLayout.OneRow;
             this.ribbonPageGroup4.Name = "ribbonPageGroup4";
-            this.ribbonPageGroup4.Text = "Student";
             // 
             // ribbonPage3
             // 
@@ -238,10 +252,12 @@
             this.ribbonPageGroup5.ItemLinks.Add(this.barBtnCourseDelete);
             this.ribbonPageGroup5.ItemsLayout = DevExpress.XtraBars.Ribbon.RibbonPageGroupItemsLayout.OneRow;
             this.ribbonPageGroup5.Name = "ribbonPageGroup5";
-            this.ribbonPageGroup5.Text = "Course";
             // 
             // ribbonStatusBar
             // 
+            this.ribbonStatusBar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ribbonStatusBar.Dock = System.Windows.Forms.DockStyle.None;
             this.ribbonStatusBar.ItemLinks.Add(this.bsiRecordsCount);
             this.ribbonStatusBar.Location = new System.Drawing.Point(0, 575);
@@ -280,6 +296,7 @@
             this.Controls.Add(this.gridControl);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbonControl);
+            this.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.Shadow;
             this.Name = "Main";
             this.Ribbon = this.ribbonControl;
             this.StatusBar = this.ribbonStatusBar;

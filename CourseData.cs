@@ -50,6 +50,7 @@ namespace StudentManagementSystem
             course.CourseName = teName.Text;
             course.CourseCode = teCourseCode.Text;
             mainForm.AddNewCourse(course);
+            mainForm.RefreshGridView(mainForm.Courses);
             this.Close();
         }
 
@@ -58,6 +59,7 @@ namespace StudentManagementSystem
             course.CourseName = teName.Text;
             course.CourseCode = teCourseCode.Text;
             mainForm.UpdateCourse(course);
+            mainForm.RefreshGridView(mainForm.Courses);
             this.Close();
         }
     }

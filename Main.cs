@@ -198,28 +198,32 @@ namespace StudentManagementSystem
             con.Close();
             return dt;
         }
-
+        public void RefreshGridView(string targetTable)
+        {
+            gridControl.DataSource = null;
+            gridView1.Columns.Clear();
+            gridControl.DataSource = GetTable(targetTable);
+        }
 
         private void barBtnDelete_ItemClick(object sender, ItemClickEventArgs e)
         {
             Student student = GetSelectedStudent();
             DeleteStudent(student);
             XtraMessageBox.Show(student.FirstName +" "+ student.LastName+ " deleted.");
+            RefreshGridView(Students);
         }
 
 
         private void barBtnRefresh_ItemClick(object sender, ItemClickEventArgs e)
         {
-            gridControl.DataSource = null;
-            gridView1.Columns.Clear();
-            gridControl.DataSource = GetTable(Students);
+            RefreshGridView(Students);
         }
 
         private void barBtnEdit_ItemClick(object sender, ItemClickEventArgs e)
         {
             Student student = GetSelectedStudent();
 
-            NewStudentWindow studentWindow = new NewStudentWindow(this);
+            StudentData studentWindow = new StudentData(this);
             studentWindow.Show();
             studentWindow.GetDataSource(student);
             studentWindow.EnableButton(FormOpenType.Edit);
@@ -229,7 +233,7 @@ namespace StudentManagementSystem
 
         private void barBtnAdd_ItemClick(object sender, ItemClickEventArgs e)
         {
-            NewStudentWindow studentWindow = new NewStudentWindow(this);
+            StudentData studentWindow = new StudentData(this);
             studentWindow.Show();
             studentWindow.EnableButton(FormOpenType.Add);
             studentWindow.FillSelectedCourseList();
@@ -245,10 +249,10 @@ namespace StudentManagementSystem
 
         private void barBtnCourseRefresh_ItemClick(object sender, ItemClickEventArgs e)
         {
-            gridControl.DataSource = null;
-            gridView1.Columns.Clear();
-            gridControl.DataSource = GetTable(Courses);
+            RefreshGridView(Courses);
         }
+
+        
 
         private void barBtnCourseEdit_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -265,7 +269,20 @@ namespace StudentManagementSystem
             Course course = GetSelectedCourse();
             DeleteCourse(course);
             XtraMessageBox.Show(course.CourseCode + " " + course.CourseName+ " deleted.");
+            RefreshGridView(Courses);
 
+        }
+
+        private void RobbonSelectedPageChanged(object sender, EventArgs e)
+        {
+            if (ribbonControl.SelectedPage == ribbonPage1)
+            {
+                RefreshGridView(Students);
+            }
+            else if(ribbonControl.SelectedPage == ribbonPage3)
+            {
+                RefreshGridView(Courses);
+            }
         }
     }
 

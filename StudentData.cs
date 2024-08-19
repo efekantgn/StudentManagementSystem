@@ -19,7 +19,7 @@ using System.Windows.Forms;
 
 namespace StudentManagementSystem
 {
-    public partial class NewStudentWindow : DevExpress.XtraBars.Ribbon.RibbonForm
+    public partial class StudentData : DevExpress.XtraBars.Ribbon.RibbonForm
     {
         Main mainForm;
         Student student;
@@ -28,7 +28,7 @@ namespace StudentManagementSystem
         List<Course> unselectedCourses = new List<Course>();
         
 
-        public NewStudentWindow(Main mainform)
+        public StudentData(Main mainform)
         {
             InitializeComponent();
             this.mainForm = mainform;
@@ -52,10 +52,14 @@ namespace StudentManagementSystem
                 }
             }
 
-            foreach (var course in unselectedCourses)
+            //foreach (var course in unselectedCourses)
+            //{
+            //    listBoxAllCourses.Items.Add(course.CourseName);
+            //}
+            unselectedCourses.ForEach(course =>
             {
                 listBoxAllCourses.Items.Add(course.CourseName);
-            }
+            });
         }
 
         private void InitializeCoursesDitcionary()
@@ -116,6 +120,7 @@ namespace StudentManagementSystem
             student.CourseCount = selectedCourses.Count;
             mainForm.UpdateStudent(student);
             EnrollToCourses();
+            mainForm.RefreshGridView(mainForm.Students);
             this.Close();
         }
 
@@ -128,25 +133,35 @@ namespace StudentManagementSystem
             mainForm.AddNewStudent(student);
             student.StudentId = mainForm.GetLastAddedDataID(mainForm.Students);
             EnrollToCourses();
+            mainForm.RefreshGridView(mainForm.Students);
+
             this.Close();
         }
 
         private void DisEnrollToAllCourses()
         {
-            List<Course> coursesList = courses.Values.ToList();
+            //List<Course> coursesList = courses.Values.ToList();
 
-            foreach (Course course in coursesList)
+            //foreach (Course course in coursesList)
+            //{
+            //    DisenrollToCourse(course);
+            //}
+            courses.Values.ToList().ForEach(course => 
             {
                 DisenrollToCourse(course);
-            }
+            });
         }
         private void EnrollToCourses()
         {
             DisEnrollToAllCourses();
-            foreach (Course course in selectedCourses)
+            //foreach (Course course in selectedCourses)
+            //{
+            //    EnrollToCourse(course);
+            //}
+            selectedCourses.ForEach(course =>
             {
                 EnrollToCourse(course);
-            }
+            });
         }
         private void EnrollToCourse(Course course)
         {
