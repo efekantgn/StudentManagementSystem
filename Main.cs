@@ -1,5 +1,6 @@
 ﻿using DevExpress.DataAccess.DataFederation;
 using DevExpress.XtraBars;
+using DevExpress.XtraEditors;
 using DevExpress.XtraWaitForm;
 using Microsoft.Identity.Client;
 using System;
@@ -29,12 +30,12 @@ namespace StudentManagementSystem
         {
             SqlConnection con = new SqlConnection(connectionString);
             string sqlQuery = "Insert Into "+ Students + " " +
-                "(first_name,last_name,course_count)" +
+                "(FirstName,LastName,CourseCount)" +
                 "Values(@p1,@p2,@p3)";
             SqlCommand sc = new SqlCommand(sqlQuery, con);
-            sc.Parameters.AddWithValue("@p1", st.first_name);
-            sc.Parameters.AddWithValue("@p2", st.last_name);
-            sc.Parameters.AddWithValue("@p3", st.course_count);
+            sc.Parameters.AddWithValue("@p1", st.FirstName);
+            sc.Parameters.AddWithValue("@p2", st.LastName);
+            sc.Parameters.AddWithValue("@p3", st.CourseCount);
             con.Open();
             sc.ExecuteNonQuery();
             con.Close();
@@ -50,13 +51,13 @@ namespace StudentManagementSystem
         {
             SqlConnection con = new SqlConnection(connectionString);
             string sqlQuery = "Update "+ Students + " " +
-                "Set first_name=@p1,last_name=@p2,course_count=@p3 " +
-                "Where student_id=@p4";
+                "Set FirstName=@p1,LastName=@p2,CourseCount=@p3 " +
+                "Where StudentId=@p4";
             SqlCommand sc = new SqlCommand(sqlQuery, con);
-            sc.Parameters.AddWithValue("@p1", st.first_name);
-            sc.Parameters.AddWithValue("@p2", st.last_name);
-            sc.Parameters.AddWithValue("@p3", st.course_count);
-            sc.Parameters.AddWithValue("@p4", st.student_id);
+            sc.Parameters.AddWithValue("@p1", st.FirstName);
+            sc.Parameters.AddWithValue("@p2", st.LastName);
+            sc.Parameters.AddWithValue("@p3", st.CourseCount);
+            sc.Parameters.AddWithValue("@p4", st.StudentId);
             con.Open();
             sc.ExecuteNonQuery();
             con.Close();
@@ -64,12 +65,12 @@ namespace StudentManagementSystem
         private void DeleteStudent(Student student)
         {
             SqlConnection con = new SqlConnection(connectionString);
-            string delFromStudent = "Delete From " + Students + " Where student_id=@p1";
+            string delFromStudent = "Delete From " + Students + " Where StudentId=@p1";
             SqlCommand scStudent = new SqlCommand(delFromStudent, con);
-            scStudent.Parameters.AddWithValue("@p1", student.student_id);
-            string delFromEnrollment = "Delete From " + Enrollments + " Where student_id=@p1";
+            scStudent.Parameters.AddWithValue("@p1", student.StudentId);
+            string delFromEnrollment = "Delete From " + Enrollments + " Where StudentId=@p1";
             SqlCommand scEnrolment = new SqlCommand(delFromEnrollment, con);
-            scEnrolment.Parameters.AddWithValue("@p1", student.student_id);
+            scEnrolment.Parameters.AddWithValue("@p1", student.StudentId);
             con.Open();
             scEnrolment.ExecuteNonQuery();
             scStudent.ExecuteNonQuery();
@@ -79,10 +80,10 @@ namespace StudentManagementSystem
         private Student GetSelectedStudent()
         {
             Student student;
-            student.student_id = (int)gridView1.GetFocusedRowCellValue("student_id");
-            student.first_name = gridView1.GetFocusedRowCellValue("first_name").ToString();
-            student.last_name = gridView1.GetFocusedRowCellValue("last_name").ToString();
-            student.course_count = (int)gridView1.GetFocusedRowCellValue("course_count");
+            student.StudentId = (int)gridView1.GetFocusedRowCellValue("StudentId");
+            student.FirstName = gridView1.GetFocusedRowCellValue("FirstName").ToString();
+            student.LastName = gridView1.GetFocusedRowCellValue("LastName").ToString();
+            student.CourseCount = (int)gridView1.GetFocusedRowCellValue("CourseCount");
             return student;
         }
 #endregion
@@ -92,11 +93,11 @@ namespace StudentManagementSystem
         {
             SqlConnection con = new SqlConnection(connectionString);
             string sqlQuery = "Insert Into "+ Courses + " " +
-                "(course_name,course_code)" +
+                "(CourseName,CourseCode)" +
                 "Values(@p1,@p2)";
             SqlCommand sc = new SqlCommand(sqlQuery, con);
-            sc.Parameters.AddWithValue("@p1", course.course_name);
-            sc.Parameters.AddWithValue("@p2", course.course_code);
+            sc.Parameters.AddWithValue("@p1", course.CourseName);
+            sc.Parameters.AddWithValue("@p2", course.CourseCode);
             con.Open();
             sc.ExecuteNonQuery();
             con.Close();
@@ -105,12 +106,12 @@ namespace StudentManagementSystem
         {
             SqlConnection con = new SqlConnection(connectionString);
             string sqlQuery = "Update "+ Courses + " "+
-                "Set course_name=@p1 , course_code=@p2 " +
-                "Where course_id=@p3";
+                "Set CourseName=@p1 , CourseCode=@p2 " +
+                "Where CourseId=@p3";
             SqlCommand sc = new SqlCommand(sqlQuery, con);
-            sc.Parameters.AddWithValue("@p1", course.course_name);
-            sc.Parameters.AddWithValue("@p2", course.course_code);
-            sc.Parameters.AddWithValue("@p3", course.course_id);
+            sc.Parameters.AddWithValue("@p1", course.CourseName);
+            sc.Parameters.AddWithValue("@p2", course.CourseCode);
+            sc.Parameters.AddWithValue("@p3", course.CourseId);
             con.Open();
             sc.ExecuteNonQuery();
             con.Close();
@@ -118,13 +119,13 @@ namespace StudentManagementSystem
         private void DeleteCourse(Course course)
         {
             SqlConnection con = new SqlConnection(connectionString);
-            string sqlQuery = "Delete From "+ Courses + " Where course_id = @p1";
+            string sqlQuery = "Delete From "+ Courses + " Where CourseId = @p1";
             SqlCommand sc = new SqlCommand(sqlQuery, con);
-            sc.Parameters.AddWithValue("@p1", course.course_id);
+            sc.Parameters.AddWithValue("@p1", course.CourseId);
 
-            string delFromEnrollment = "Delete From " + Enrollments + " Where course_id=@p1";
+            string delFromEnrollment = "Delete From " + Enrollments + " Where CourseId=@p1";
             SqlCommand scEnrolment = new SqlCommand(delFromEnrollment, con);
-            scEnrolment.Parameters.AddWithValue("@p1", course.course_id);
+            scEnrolment.Parameters.AddWithValue("@p1", course.CourseId);
 
             con.Open();
             scEnrolment.ExecuteNonQuery();
@@ -135,9 +136,9 @@ namespace StudentManagementSystem
         {
             Course course = new Course
             {
-                course_id = (int)gridView1.GetFocusedRowCellValue("course_id"),
-                course_name = gridView1.GetFocusedRowCellValue("course_name").ToString(),
-                course_code= gridView1.GetFocusedRowCellValue("course_code").ToString()
+                CourseId = (int)gridView1.GetFocusedRowCellValue("CourseId"),
+                CourseName = gridView1.GetFocusedRowCellValue("CourseName").ToString(),
+                CourseCode= gridView1.GetFocusedRowCellValue("CourseCode").ToString()
             };
             return course;
         }
@@ -151,8 +152,8 @@ namespace StudentManagementSystem
             DataTable dt = GetTable(Enrollments);
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                if ((int)dt.Rows[i][1]==enrollment.student_id
-                    && (int)dt.Rows[i][2] == enrollment.course_id)
+                if ((int)dt.Rows[i][1]==enrollment.StudentId
+                    && (int)dt.Rows[i][2] == enrollment.CourseId)
                 {
                     //already Enrolled.
                     break;
@@ -161,11 +162,11 @@ namespace StudentManagementSystem
 
             SqlConnection con = new SqlConnection(connectionString);
             string sqlQuery = "Insert Into " + Enrollments + " " +
-                "(student_id,course_id)" +
+                "(StudentId,CourseId)" +
                 "Values(@p1,@p2)";
             SqlCommand sc = new SqlCommand(sqlQuery, con);
-            sc.Parameters.AddWithValue("@p1", enrollment.student_id);
-            sc.Parameters.AddWithValue("@p2", enrollment.course_id);
+            sc.Parameters.AddWithValue("@p1", enrollment.StudentId);
+            sc.Parameters.AddWithValue("@p2", enrollment.CourseId);
             con.Open();
             sc.ExecuteNonQuery();
             con.Close();
@@ -174,10 +175,10 @@ namespace StudentManagementSystem
         public void Disenroll(Enrollment enrollment)
         {
             SqlConnection con = new SqlConnection(connectionString);
-            string sqlQuery = "Delete From " + Enrollments + " Where course_id = @p1 and student_id=@p2";
+            string sqlQuery = "Delete From " + Enrollments + " Where CourseId = @p1 and StudentId=@p2";
             SqlCommand sc = new SqlCommand(sqlQuery, con);
-            sc.Parameters.AddWithValue("@p1", enrollment.course_id);
-            sc.Parameters.AddWithValue("@p2", enrollment.student_id);
+            sc.Parameters.AddWithValue("@p1", enrollment.CourseId);
+            sc.Parameters.AddWithValue("@p2", enrollment.StudentId);
             con.Open();
             sc.ExecuteNonQuery();
             con.Close();
@@ -201,7 +202,9 @@ namespace StudentManagementSystem
 
         private void barBtnDelete_ItemClick(object sender, ItemClickEventArgs e)
         {
-            DeleteStudent(GetSelectedStudent());
+            Student student = GetSelectedStudent();
+            DeleteStudent(student);
+            XtraMessageBox.Show(student.FirstName +" "+ student.LastName+ " deleted.");
         }
 
 
@@ -259,33 +262,31 @@ namespace StudentManagementSystem
 
         private void barBtnCourseDelete_ItemClick(object sender, ItemClickEventArgs e)
         {
-            DeleteCourse(GetSelectedCourse());
-        }
+            Course course = GetSelectedCourse();
+            DeleteCourse(course);
+            XtraMessageBox.Show(course.CourseCode + " " + course.CourseName+ " deleted.");
 
-        public void EnrollToCourses(Student st,List<Course> courses)
-        {
-            
         }
     }
 
     public struct Student
     {
-        public int student_id;
-        public string first_name;
-        public string last_name;
-        public int course_count;
+        public int StudentId;
+        public string FirstName;
+        public string LastName;
+        public int CourseCount;
     }
     public struct Course 
     {
-        public int course_id;
-        public string course_name;
-        public string course_code;
+        public int CourseId;
+        public string CourseName;
+        public string CourseCode;
     }
     public struct Enrollment
     {
-        public int enrollment_id;
-        public int student_id;
-        public int course_id;
+        public int EnrollmentId;
+        public int StudentId;
+        public int CourseId;
     }
     public enum FormOpenType
     {

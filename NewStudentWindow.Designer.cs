@@ -158,10 +158,10 @@
             // 
             // textEdit1
             // 
-            this.textEdit1.Location = new System.Drawing.Point(66, 12);
+            this.textEdit1.Location = new System.Drawing.Point(107, 12);
             this.textEdit1.MenuManager = this.mainRibbonControl;
             this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Size = new System.Drawing.Size(380, 20);
+            this.textEdit1.Size = new System.Drawing.Size(339, 20);
             this.textEdit1.StyleController = this.dataLayoutControl1;
             this.textEdit1.TabIndex = 4;
             // 
@@ -184,23 +184,27 @@
             // 
             // listBoxSelectedCourses
             // 
-            this.listBoxSelectedCourses.Location = new System.Drawing.Point(304, 71);
+            this.listBoxSelectedCourses.Location = new System.Drawing.Point(304, 86);
             this.listBoxSelectedCourses.Name = "listBoxSelectedCourses";
-            this.listBoxSelectedCourses.Size = new System.Drawing.Size(142, 189);
+            this.listBoxSelectedCourses.Size = new System.Drawing.Size(142, 174);
+            this.listBoxSelectedCourses.SortOrder = System.Windows.Forms.SortOrder.Ascending;
             this.listBoxSelectedCourses.StyleController = this.dataLayoutControl1;
             this.listBoxSelectedCourses.TabIndex = 12;
             // 
             // listBoxAllCourses
             // 
-            this.listBoxAllCourses.Location = new System.Drawing.Point(12, 71);
+            this.listBoxAllCourses.Location = new System.Drawing.Point(12, 86);
             this.listBoxAllCourses.Name = "listBoxAllCourses";
-            this.listBoxAllCourses.Size = new System.Drawing.Size(142, 189);
+            this.listBoxAllCourses.Size = new System.Drawing.Size(142, 174);
+            this.listBoxAllCourses.SortOrder = System.Windows.Forms.SortOrder.Ascending;
             this.listBoxAllCourses.StyleController = this.dataLayoutControl1;
             this.listBoxAllCourses.TabIndex = 11;
             // 
             // simpleButton2
             // 
-            this.simpleButton2.Location = new System.Drawing.Point(158, 153);
+            this.simpleButton2.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.simpleButton2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("simpleButton2.ImageOptions.SvgImage")));
+            this.simpleButton2.Location = new System.Drawing.Point(158, 152);
             this.simpleButton2.Name = "simpleButton2";
             this.simpleButton2.Size = new System.Drawing.Size(142, 36);
             this.simpleButton2.StyleController = this.dataLayoutControl1;
@@ -210,7 +214,9 @@
             // 
             // simpleButton1
             // 
-            this.simpleButton1.Location = new System.Drawing.Point(158, 112);
+            this.simpleButton1.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.simpleButton1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("simpleButton1.ImageOptions.SvgImage")));
+            this.simpleButton1.Location = new System.Drawing.Point(158, 111);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(142, 37);
             this.simpleButton1.StyleController = this.dataLayoutControl1;
@@ -220,10 +226,10 @@
             // 
             // textEdit2
             // 
-            this.textEdit2.Location = new System.Drawing.Point(66, 36);
+            this.textEdit2.Location = new System.Drawing.Point(107, 36);
             this.textEdit2.MenuManager = this.mainRibbonControl;
             this.textEdit2.Name = "textEdit2";
-            this.textEdit2.Size = new System.Drawing.Size(380, 20);
+            this.textEdit2.Size = new System.Drawing.Size(339, 20);
             this.textEdit2.StyleController = this.dataLayoutControl1;
             this.textEdit2.TabIndex = 5;
             // 
@@ -252,7 +258,7 @@
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Size = new System.Drawing.Size(438, 24);
             this.layoutControlItem1.Text = "Name";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(42, 13);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(83, 13);
             // 
             // layoutControlItem2
             // 
@@ -261,12 +267,12 @@
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Size = new System.Drawing.Size(438, 24);
             this.layoutControlItem2.Text = "Surname";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(42, 13);
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(83, 13);
             // 
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.simpleButton1;
-            this.layoutControlItem6.Location = new System.Drawing.Point(146, 100);
+            this.layoutControlItem6.Location = new System.Drawing.Point(146, 99);
             this.layoutControlItem6.MinSize = new System.Drawing.Size(30, 26);
             this.layoutControlItem6.Name = "layoutControlItem6";
             this.layoutControlItem6.Size = new System.Drawing.Size(146, 41);
@@ -277,7 +283,7 @@
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.simpleButton2;
-            this.layoutControlItem7.Location = new System.Drawing.Point(146, 141);
+            this.layoutControlItem7.Location = new System.Drawing.Point(146, 140);
             this.layoutControlItem7.MinSize = new System.Drawing.Size(50, 26);
             this.layoutControlItem7.Name = "layoutControlItem7";
             this.layoutControlItem7.Size = new System.Drawing.Size(146, 40);
@@ -288,45 +294,47 @@
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.listBoxAllCourses;
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 59);
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 58);
             this.layoutControlItem4.MinSize = new System.Drawing.Size(54, 4);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(146, 193);
+            this.layoutControlItem4.Size = new System.Drawing.Size(146, 194);
             this.layoutControlItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem4.TextVisible = false;
+            this.layoutControlItem4.Text = "Courses";
+            this.layoutControlItem4.TextLocation = DevExpress.Utils.Locations.Top;
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(83, 13);
             // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.listBoxSelectedCourses;
-            this.layoutControlItem5.Location = new System.Drawing.Point(292, 59);
+            this.layoutControlItem5.Location = new System.Drawing.Point(292, 58);
             this.layoutControlItem5.MinSize = new System.Drawing.Size(54, 4);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(146, 193);
+            this.layoutControlItem5.Size = new System.Drawing.Size(146, 194);
             this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem5.TextVisible = false;
+            this.layoutControlItem5.Text = "Selected Courses";
+            this.layoutControlItem5.TextLocation = DevExpress.Utils.Locations.Top;
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(83, 13);
             // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(0, 48);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(438, 11);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(438, 10);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(146, 181);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(146, 180);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(146, 71);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(146, 72);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem3
             // 
             this.emptySpaceItem3.AllowHotTrack = false;
-            this.emptySpaceItem3.Location = new System.Drawing.Point(146, 59);
+            this.emptySpaceItem3.Location = new System.Drawing.Point(146, 58);
             this.emptySpaceItem3.Name = "emptySpaceItem3";
             this.emptySpaceItem3.Size = new System.Drawing.Size(146, 41);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);

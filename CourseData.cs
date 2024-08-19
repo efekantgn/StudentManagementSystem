@@ -24,8 +24,8 @@ namespace StudentManagementSystem
         public void GetDataSource(Course course)
         {
             this.course = course;
-            teCourseCode.Text = course.course_code.ToString();
-            teName.Text = course.course_name;
+            teCourseCode.Text = course.CourseCode.ToString();
+            teName.Text = course.CourseName;
         }
 
         public void EnableButton(FormOpenType formOpenType)
@@ -47,16 +47,16 @@ namespace StudentManagementSystem
 
         private void barBtnAdd_ItemClick(object sender, ItemClickEventArgs e)
         {
-            course.course_name = teName.Text;
-            course.course_code = teCourseCode.Text;
+            course.CourseName = teName.Text;
+            course.CourseCode = teCourseCode.Text;
             mainForm.AddNewCourse(course);
             this.Close();
         }
 
         private void barBtnSave_ItemClick(object sender, ItemClickEventArgs e)
         {
-            course.course_name = teName.Text;
-            course.course_code = teCourseCode.Text;
+            course.CourseName = teName.Text;
+            course.CourseCode = teCourseCode.Text;
             mainForm.UpdateCourse(course);
             this.Close();
         }

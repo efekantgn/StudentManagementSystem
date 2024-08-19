@@ -43,7 +43,7 @@ namespace StudentManagementSystem
             {
                 for (int j = 0; j < selectedCourses.Count; j++)
                 {
-                    if (unselectedCourses[i].course_id == selectedCourses[j].course_id)
+                    if (unselectedCourses[i].CourseId == selectedCourses[j].CourseId)
                     {
                         unselectedCourses.RemoveAt(i);
                         i--; 
@@ -54,7 +54,7 @@ namespace StudentManagementSystem
 
             foreach (var course in unselectedCourses)
             {
-                listBoxAllCourses.Items.Add(course.course_name);
+                listBoxAllCourses.Items.Add(course.CourseName);
             }
         }
 
@@ -65,9 +65,9 @@ namespace StudentManagementSystem
             {
                 Course course = new Course()
                 {
-                    course_id = (int)dataTable.Rows[i][0],
-                    course_name = dataTable.Rows[i][1].ToString(),
-                    course_code = dataTable.Rows[i][2].ToString()
+                    CourseId = (int)dataTable.Rows[i][0],
+                    CourseName = dataTable.Rows[i][1].ToString(),
+                    CourseCode = dataTable.Rows[i][2].ToString()
                 };
                 courses.Add(dataTable.Rows[i][1].ToString(), course);
             }
@@ -79,44 +79,41 @@ namespace StudentManagementSystem
             List<Course> coursesList = courses.Values.ToList();
             for (int i = 0; i < dataTableEnrolments.Rows.Count; i++)
             {
-                if ((int)dataTableEnrolments.Rows[i][1] == student.student_id)
+                if ((int)dataTableEnrolments.Rows[i][1] != student.StudentId) continue;
+
+                int courseId = (int)dataTableEnrolments.Rows[i][2];
+
+                for (int j = 0; j < coursesList.Count; j++)
                 {
-                    int courseId = (int)dataTableEnrolments.Rows[i][2];
-                    for (int j = 0; j < coursesList.Count; j++)
+                    if (courseId != (int)coursesList[j].CourseId) continue;
+
+                    Course course = new Course()
                     {
-                        if (courseId == (int)coursesList[j].course_id)
-                        {
-                            Course course = new Course()
-                            {
-                                course_id = coursesList[j].course_id,
-                                course_name = coursesList[j].course_name,
-                                course_code = coursesList[j].course_code
-                            };
-                            selectedCourses.Add(course);
-                            listBoxSelectedCourses.Items.Add(course.course_name);
-
-                        }
-                    }
-
+                        CourseId = coursesList[j].CourseId,
+                        CourseName = coursesList[j].CourseName,
+                        CourseCode = coursesList[j].CourseCode
+                    };
+                    selectedCourses.Add(course);
+                    listBoxSelectedCourses.Items.Add(course.CourseName);
                 }
             }
-            
+
         }
 
 
         public void GetDataSource(Student st)
         {
             student = st;
-            textEdit1.Text = student.first_name;
-            textEdit2.Text = student.last_name;
+            textEdit1.Text = student.FirstName;
+            textEdit2.Text = student.LastName;
         }
        
         private void bbiSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             CalculateSelectedCourses();
-            student.first_name = textEdit1.Text;
-            student.last_name = textEdit2.Text;
-            student.course_count = selectedCourses.Count;
+            student.FirstName = textEdit1.Text;
+            student.LastName = textEdit2.Text;
+            student.CourseCount = selectedCourses.Count;
             mainForm.UpdateStudent(student);
             EnrollToCourses();
             this.Close();
@@ -125,11 +122,11 @@ namespace StudentManagementSystem
         private void btnAdd_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             CalculateSelectedCourses();
-            student.first_name = textEdit1.Text;
-            student.last_name = textEdit2.Text;
-            student.course_count = selectedCourses.Count;
+            student.FirstName = textEdit1.Text;
+            student.LastName = textEdit2.Text;
+            student.CourseCount = selectedCourses.Count;
             mainForm.AddNewStudent(student);
-            student.student_id = mainForm.GetLastAddedDataID(mainForm.Students);
+            student.StudentId = mainForm.GetLastAddedDataID(mainForm.Students);
             EnrollToCourses();
             this.Close();
         }
@@ -155,8 +152,8 @@ namespace StudentManagementSystem
         {
             Enrollment enrollment = new Enrollment()
             {
-                student_id = student.student_id,
-                course_id = course.course_id,
+                StudentId = student.StudentId,
+                CourseId = course.CourseId,
             };
             mainForm.Enroll(enrollment);
         }
@@ -164,8 +161,8 @@ namespace StudentManagementSystem
         {
             Enrollment enrollment = new Enrollment()
             {
-                student_id = student.student_id,
-                course_id = course.course_id,
+                StudentId = student.StudentId,
+                CourseId = course.CourseId,
             };
             mainForm.Disenroll(enrollment);
         }
@@ -189,7 +186,6 @@ namespace StudentManagementSystem
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            
             MoveItemListToList(listBoxAllCourses, listBoxSelectedCourses);
         }
 
